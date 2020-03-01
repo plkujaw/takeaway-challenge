@@ -3,7 +3,9 @@ require "order"
 describe Order do
   subject(:order) { described_class.new(menu) }
 
-  let(:menu) { double(:menu) }
+  let(:menu) { instance_double("Menu") }
+  # instance_double = verified double becomes aware of "Menu" class and
+  # whats inside
 
   let(:dishes) do
     {
