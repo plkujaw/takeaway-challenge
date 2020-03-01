@@ -13,4 +13,18 @@ attr_reader :dishes, :menu
     dishes[dish] = quantity
   end
 
+  def total
+    item_totals.sum
+  end
+
+private
+
+  def item_totals
+    dishes.map do |dish, quantity|
+      menu.price(dish) * quantity
+    end
+
+  end
+
+
 end

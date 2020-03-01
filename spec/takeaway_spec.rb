@@ -11,7 +11,7 @@ let(:menu) { double(:menu, print: printed_menu) }
 let(:printed_menu) { "Pizza: £15, Burger: £12, Salad: £10" }
 # creating a double of #printed_menu expected return
 
-let(:order) { double(:order) }
+let(:order) { instance_double("Order", total: 47) }
 # creating order object double
 
 
@@ -27,5 +27,11 @@ let(:dishes) { {Pizza: 1, Burger: 2} }
   it "can orded some number of several available dishes" do
     expect(order).to receive(:add).twice
     takeaway.place_order(dishes)
+  end
+
+  it "knows the order total" do
+    allow(order).to receive(:add)
+    total = takeaway.place_order(dishes)
+    expect(total).to eq(47)
   end
 end
